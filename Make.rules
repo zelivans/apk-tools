@@ -63,9 +63,9 @@ export FULL_VERSION RCS_FIND_IGNORE
 ##
 # Utilities and default flags for them.
 
-CROSS_COMPILE	?=
-CC		:= $(CROSS_COMPILE)gcc
-LD		:= $(CROSS_COMPILE)ld
+# CROSS_COMPILE	?=
+# CC		:= $(CROSS_COMPILE)gcc
+# LD		:= $(CROSS_COMPILE)ld
 INSTALL		:= install
 INSTALLDIR	:= $(INSTALL) -d
 

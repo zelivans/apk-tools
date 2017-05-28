@@ -39,7 +39,7 @@ static const struct apk_option_group *default_optgroups[] = { &optgroup_global, 
 static struct list_head apk_applet_list;
 #define foreach_applet(iter) list_for_each_entry(iter, &apk_applet_list, node)
 
-#ifdef TEST_MODE
+#ifdef TEST_MODEk
 static const char *test_installed_db = NULL;
 static const char *test_world = NULL;
 static struct apk_string_array *test_repos;
