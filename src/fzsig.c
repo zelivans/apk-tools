@@ -125,7 +125,7 @@ static struct apk_applet apk_fzsig = {
 	.name = "fzsig",
 	.help = "Applet for fuzzing the tar.gz cache downloading",
 	.open_flags = APK_OPENF_WRITE,
-	.main = fz_main,
+	.main = fzsig_main,
 };
 
 APK_DEFINE_APPLET(apk_fzsif);
