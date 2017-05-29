@@ -248,6 +248,10 @@ int apk_db_cache_active(struct apk_database *db);
 int apk_cache_download(struct apk_database *db, struct apk_repository *repo,
 		       struct apk_package *pkg, int verify,
 		       apk_progress_cb cb, void *cb_ctx);
+// For hacking it in
+int apk_cache_download_fzsig_local(struct apk_database *db, // struct apk_repository *repo,
+		       struct apk_package *pkg, int verify,
+		       apk_progress_cb cb, void *cb_ctx, struct apk_bstream *bs);
 
 typedef void (*apk_cache_item_cb)(struct apk_database *db,
 				  int dirfd, const char *name,
