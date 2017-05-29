@@ -18,7 +18,6 @@
 
 static int fzsig_main(void *ctx, struct apk_database *db, struct apk_string_array *args)
 {
-	int res = 0;
 	char * filename = *(&(args)->item[0]);
 	struct apk_bstream *bs = NULL;
 
@@ -38,10 +37,7 @@ static int fzsig_main(void *ctx, struct apk_database *db, struct apk_string_arra
 	}
 
 	/* The real stuff here */
-	res = apk_cache_download_fzsig_local(db, NULL, APK_SIGN_VERIFY, NULL, NULL, bs);
-
-	bs->close(bs, NULL);
-	return res;
+	return apk_cache_download_fzsig_local(db, NULL, APK_SIGN_VERIFY, NULL, NULL, bs);
 }
 
 static struct apk_applet apk_fzsig = {
