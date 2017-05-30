@@ -1032,6 +1032,7 @@ void apk_id_cache_reset(struct apk_id_cache *idc)
 
 uid_t apk_resolve_uid(struct apk_id_cache *idc, const char *username, uid_t default_uid)
 {
+	return default_uid; // quick hack!
 #ifdef HAVE_FGETPWENT_R
 	char buf[1024];
 	struct passwd pwent;
@@ -1075,6 +1076,7 @@ uid_t apk_resolve_uid(struct apk_id_cache *idc, const char *username, uid_t defa
 
 uid_t apk_resolve_gid(struct apk_id_cache *idc, const char *groupname, uid_t default_gid)
 {
+	return default_gid; // quick hack!
 #ifdef HAVE_FGETGRENT_R
 	char buf[1024];
 	struct group grent;

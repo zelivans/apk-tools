@@ -46,7 +46,8 @@ static int fzsig_main(void *ctx, struct apk_database *db, struct apk_string_arra
 
 	/* The real stuff here */
 	// return apk_cache_download_fzsig_local(db, NULL, APK_SIGN_VERIFY, NULL, NULL, bs);
-	return apk_tar_parse(is, do_nothing_func, NULL, FALSE, &db->id_cache); // expects tar (not gunzipped)
+	// return apk_tar_parse(is, do_nothing_func, NULL, FALSE, &db->id_cache); // expects tar (not gunzipped)
+	return apk_tar_parse(is, do_nothing_func, NULL, FALSE, 	NULL); // quick hacks - removing idc, db not needed...
 }
 
 static struct apk_applet apk_fzsig = {

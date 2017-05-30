@@ -382,7 +382,7 @@ static void merge_options(struct option *opts, const struct apk_option *ao, int 
 	}
 	opts->name = NULL;
 }
-
+/*
 static void fini_openssl(void)
 {
 	EVP_cleanup();
@@ -401,7 +401,7 @@ static void init_openssl(void)
 	ENGINE_register_all_complete();
 #endif
 }
-
+*/
 static void on_sigwinch(int s)
 {
 	apk_reset_screen_width();
@@ -499,7 +499,7 @@ int main(int argc, char **argv)
 		}
 	}
 
-	init_openssl();
+	// init_openssl();
 	setup_automatic_flags();
 	fetchConnectionCacheInit(16, 1);
 
@@ -523,7 +523,7 @@ int main(int argc, char **argv)
 		argv++;
 	}
 
-	apk_db_init(&db);
+	// apk_db_init(&db);
 	signal(SIGINT, on_sigint);
 
 #ifdef TEST_MODE
@@ -532,12 +532,12 @@ int main(int argc, char **argv)
 	apk_flags |= APK_SIMULATE;
 	apk_flags &= ~APK_INTERACTIVE;
 #endif
-	r = apk_db_open(&db, &dbopts);
-	if (r != 0) {
-		apk_error("Failed to open apk database: %s",
-			  apk_error_str(r));
-		goto err;
-	}
+	// r = apk_db_open(&db, &dbopts);
+	// if (r != 0) {
+	// 	apk_error("Failed to open apk database: %s",
+	// 		  apk_error_str(r));
+	// 	goto err;
+	// }
 
 #ifdef TEST_MODE
 	if (test_world != NULL) {
@@ -590,7 +590,7 @@ int main(int argc, char **argv)
 	memcpy(args->item, argv, argc * sizeof(*argv));
 
 	r = applet->main(ctx, &db, args);
-	apk_db_close(&db);
+	// apk_db_close(&db);
 
 err_and_usage:
 	if (r == -EINVAL)

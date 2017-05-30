@@ -289,7 +289,7 @@ int apk_tar_parse(struct apk_istream *is, apk_archive_entry_parser parser,
 		case 'x': /* file specific pax header */
 			paxlen = entry.size;
 			entry.size = 0;
-			if (blob_realloc(&pax, (paxlen + 511) & -512)) goto err_nomem;
+			if (blob_realloc(&pax, (paxlen + 511) & -512)) goto err_nomem; // z: can I overflow this?
 			is->read(is, pax.ptr, paxlen);
 			offset += paxlen;
 			break;
