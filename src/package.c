@@ -632,7 +632,7 @@ int apk_sign_ctx_verify_tar(void *sctx, const struct apk_file_info *fi,
 	if (r <= 0)
 		return r;
 
-	if (strcmp(fi->name, ".PKGINFO") == 0) {
+	if (strcmp(fi->name, ".PKGINFO") == 0) { // here - check pkginfo
 		apk_blob_t blob = apk_blob_from_istream(is, fi->size);
 		apk_blob_for_each_segment(
 			blob, "\n",

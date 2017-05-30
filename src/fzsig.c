@@ -16,10 +16,17 @@
 #include "apk_version.h"
 #include "apk_print.h"
 
+int do_nothing_func (void *sctx, const struct apk_file_info *fi,
+			    struct apk_istream *is)
+{
+	return 0;
+}
+
 static int fzsig_main(void *ctx, struct apk_database *db, struct apk_string_array *args)
 {
 	char * filename = *(&(args)->item[0]);
-	struct apk_bstream *bs = NULL;
+	// struct apk_bstream *bs = NULL;
+	struct apk_istream *is = NULL;
 
 	if (*(&(args)->num) != 1)
 	{
@@ -29,15 +36,17 @@ static int fzsig_main(void *ctx, struct apk_database *db, struct apk_string_arra
 
 	apk_message("Working on %s...", filename);
 
-	bs = apk_bstream_from_file(AT_FDCWD, filename);
-	if (IS_ERR_OR_NULL(bs))
+	//bs = apk_bstream_from_file(AT_FDCWD, filename);
+	is = apk_istream_from_file(AT_FDCWD, filename);
+	if (IS_ERR_OR_NULL(is))
 	{
 		apk_message("Check your file please");
-		return PTR_ERR(bs);
+		return PTR_ERR(is);
 	}
 
 	/* The real stuff here */
-	return apk_cache_download_fzsig_local(db, NULL, APK_SIGN_VERIFY, NULL, NULL, bs);
+	// return apk_cache_download_fzsig_local(db, NULL, APK_SIGN_VERIFY, NULL, NULL, bs);
+	return apk_tar_parse(is, do_nothing_func, NULL, FALSE, &db->id_cache); // expects tar (not gunzipped)
 }
 
 static struct apk_applet apk_fzsig = {
